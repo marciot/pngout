@@ -36,8 +36,8 @@ static void b8(struct pngout *s, uint8_t n)
 static void adler8(struct pngout *s, uint8_t n)
 {
   b8(s, n);
-  s->s1 = (s->s1 + n) % 65521;
-  s->s2 = (s->s2 + s->s1) % 65521;
+  s->s1 = ((uint32_t)s->s1 + n) % 65521;
+  s->s2 = ((uint32_t)s->s2 + s->s1) % 65521;
 }
 
 /* be32: Output 32-bit n big-endian */
